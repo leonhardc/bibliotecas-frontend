@@ -39,5 +39,11 @@ Lembre-se de que você pode adicionar várias classes ao mesmo elemento separand
 
 ```
 
+## Criar um botão do Bootstrap
+
+O Bootstrap possui seus próprios estilos para elementos button, os quais ficam muito melhores do que aqueles botões em HTML puro.
+
+Crie um novo elemento button abaixo da foto grande do gatinho. Dê a ele as classes btn e btn-default, assim como o texto Like.
+
 
 
