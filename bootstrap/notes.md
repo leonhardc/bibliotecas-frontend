@@ -19,3 +19,13 @@ Você pode incluir o Bootstrap em qualquer aplicativo, adicionando o seguinte c�
 
 Neste caso, já o adicionamos para você a esta página por trás dos panos. Note que usar a tag > ou /> para fechar a tag link é aceitável.
 
+## Tornar imagens responsivas a dispositivos móveis
+
+Primeiro, adicione uma nova imagem abaixo da existente. Defina o seu atributo src como https://cdn.freecodecamp.org/curriculum/cat-photo-app/running-cats.jpg.
+
+Seria ótimo se essa imagem pudesse ser exatamente do tamanho da nossa tela do celular.
+
+Felizmente, com o Bootstrap, tudo que precisamos fazer é adicionar a classe img-responsive para a nossa imagem. Faça isso, e a imagem deve encaixar perfeitamente na largura da página.
+
+
+
