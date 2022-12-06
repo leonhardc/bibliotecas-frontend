@@ -27,5 +27,17 @@ Seria ótimo se essa imagem pudesse ser exatamente do tamanho da nossa tela do c
 
 Felizmente, com o Bootstrap, tudo que precisamos fazer é adicionar a classe img-responsive para a nossa imagem. Faça isso, e a imagem deve encaixar perfeitamente na largura da página.
 
+## Centralizar o texto com Bootstrap
+
+Agora que estamos usando Bootstrap, podemos centralizar nossos elementos de cabeçalho para deixá-los com melhor aparência. Tudo que precisamos fazer é adicionar a classe text-center ao nosso elemento h2.
+
+Lembre-se de que você pode adicionar várias classes ao mesmo elemento separando cada uma delas com um espaço, assim:
+
+```html
+
+    <h2 class="red-text text-center">your text</h2>
+
+```
+
 
 
