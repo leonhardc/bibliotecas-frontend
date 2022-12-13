@@ -7,51 +7,108 @@
     <title>Document</title>
 </head>
 <body>
-    <!-- Passo 1: Adicionar uma div responsiva e fluida .container-fluid -->
-    <div class="container-fluid"> 
-        <!-- 
-            Passo 2: Adicionar um elemento h3 como titulo e definir a cor padrão
-            do projeto e centralizar o texto
-        -->
-        <h3 class="text-primary text-center">jQuery Playground</h3>
-        <!-- Passo 3: Adicionar uma div (grid) com a classe .row (linha) -->
-        <div class="row">
-            <!-- 
-                Passo 4: Adicionar dois elementos div com a classe .col-x6-6
-                para prosseguir com a formatação da grid
-             -->
-          <div class="col-xs-6">
-                <!-- 
-                    Passo 5: Adicionar um elemento da classe .well, que dá a sensa-
-                    ção de profundidade.
-                 -->
+  <!-- Passo 1: Adicionar tag script e uma função vazia -->
+  <script>
+    $(document).ready(function(){
+      // Passo 2: Adicionar uma classe que fará todos os nossos elementos "button"
+      // quicar. Nesse exemplo estamos mirando elementos usando sua declaração de entidade
+      // $("button").addClass("animated bounce");
 
-                 <!-- 
-                    Passo 9: Adicionar ids aos elementos da classe .well
-                  -->
-                  <!-- 
-                    Passo 10: Adicionar rotulos aos elementos com classe .well
-                   -->
+      // Passo 3: Adicionar uma classe que fará todos os nossos elementos com a classe
+      // .well se mexerem. Nesse caso estamos mirando um elemento usando uma declaração de
+      //  classe.
+      // $(".well").addClass("animated shake");
+      
+      // Passo 4: Adicionar classe que fará com que o elemento com o id "target3" desapareça
+      // Nesse caso, estamos mirando em um elemento usando a declaração de id.
+      // $("#target3").addClass("animated fadeOut");
+      
+      // Passo 4: Remover todas as funções declaradas acima. Por motivos didáticos, manterei
+      // todas as funções comentadas
+    
+      // Passo 5: Adicionando classes diferentes ao mesmo elemento usando seletores diferentes
+      // Nota: Todos as classes serão adicionadas ao botão com id "target1"
+      $("button").addClass("animated");
+      $(".btn").addClass("shake");
+      $("#target1").addClass("btn-primary");
+      
+      // Passo 6: Remover classes usando o seletor .removeClass()
+      // No caso abaixo estamos removendo a classe .btn-default de todos os elementos button
+      $("button").removeClass("btn-default");
+
+      // Passo 7: Alterar css de elemento usando jquery
+      // No caso abaixo, estamos mudando a cor do texto do elemento com id target1
+      // para a cor vermelha
+      $("#target1").css("color", "red");
+
+      // Passo 8: Alterando uma propriedade de um elemento html usando jquery
+      // No caso abaixo, estamos desativando o botão com id "target1"
+      $("#target1").prop("disabled", true);
+
+      // Passo 9: Alterando o texto de um elemento html usando jquery
+      // No caso abaixo, usamos jquery para selecionar o elemento com id "target4"
+      // e darmos enfase <em></em> ao texto usando o seletor .html()
+      // Nota: Temos dois seletores que trabalham de maneira semelhante no caso
+      // de substituir o conteudo de um elemento.
+      //    1. .html(): muda o conteudo do elemento selecionado por um texto e/ou
+      //                tag html.
+      //    2. .text(): muda o conteudo do elemento selecionado somente por um texto.
+      //                se elementos html forem passado, não serão considerados.
+      $("#target4").html("<em>#target4</em>");
+
+      // Passo 10: Remover um elemento html usando o seletor .remove()
+      // No exemplo abaixo removemos o elemento botão com id target4 
+      $("#target4").remove();
+
+      // Passo 11: Usando .appendTo() para movermos elementos html de um ponto da 
+      // página para outro.
+      // No exemplo abaixo, removemos o botão com id target2 e adicionamos ele no
+      // container right-well.
+      $("#target2").appendTo("#right-well");
+      
+      // Passo 12: Copiando um elemento html de um ponto a outro da página
+      // No exemplo abaixo, dispomos de um aninhamento de funções, que no jquery
+      // é chamado de function claining, que é uma forma conveniente de fazer 
+      // as coisas com jquery. Usamos as funções como descritas abaixo:
+      // 1. Usamos a função .clone() para criar uma copia do elemento selecionado
+      // 2. Usamos a função .appendTo() para mover a copia do elemento criado com
+      //    a função .clone() para a div com id left-well
+      $("#target5").clone().appendTo("#left-well");
+
+      // Passo 13: Mirar o pai de um elemento html usando a função .parent()
+      // No exemplo abaixo, usamos a função parent para selecionar o elemento pai
+      // (primeiro elemento hierarquicamente superior) do botão com id target1
+      // e mudar a cor de fundo desse elemento para vermelho.
+      $("#target1").parent().css("background-color", "red");
+
+      // Passo 14: Mirar o filho de um elemento usando jquery
+      // No codigo abaixo usamos a função .children() para selecionar todos os 
+      // elementos filhos da div com id right-well e mudamos a cor da fonte para
+      // laranja. 
+      $("#right-well").children().css("color", "orange");
+
+      // Passo 15: Mirar um filho específico de um elemento usando o jquery
+      // No exemplo abaixo, usamos o seletor target:nth-child(2) para selecionar o segundo
+      // filho de cada elemento que tem a classe target e adicionamos uma classe para 
+      // anima-lo.
+      $(".target:nth-child(2)").addClass("animated bounce");
+
+      // Passo 16: Mirar elementos pares usando jquery
+      // Usamos o seletor :even para selecionar todos os elementos pares aos quais
+      // queremos adicionar uma animação
+      $(".target:even").addClass("animated shake");
+
+      // Passo 17: Usar o jquery para modificar a página inteira
+      // podemos mirar tambem elementos como body, sendo assim podemos fazer
+      $("body").addClass("animated hinge"); 
+      // para sumirmos com o elemento body.
+    });
+  </script>
+  <div class="container-fluid"> 
+        <h3 class="text-primary text-center">jQuery Playground</h3>
+        <div class="row">
+          <div class="col-xs-6">
             <div class="well" id="left-well">
-                <!-- 
-                    Passo 6: Adicionar 3 elementos button em cada elemento com
-                    classe .well
-                 -->
-                 <!-- 
-                    Passo 7: Adicionar as classes .btn e .btn-default em cada
-                    um dos elementos buttom
-                  -->
-                  <!-- 
-                    Passo 8: Dar a cada elemento button a classe target para
-                    podermos selecioná-los usando jquery posteriormente
-                  -->
-                  <!-- 
-                    Passo 11: Adicionar ids em cada elemento button #target1 até 
-                    #target 6
-                   -->
-                   <!-- 
-                    Passo 12: Dar a cada elemento button um label correspondente a seu id
-                    -->
                  <button class="btn btn-default target" id="target1">#target1</button>
                  <button class="btn btn-default target" id="target2">#target2</button>
                  <button class="btn btn-default target" id="target3">#target3</button>      
