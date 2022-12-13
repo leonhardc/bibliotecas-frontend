@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sass</title>
+</head>
+<body>
+    <style type='text/scss'>
+        /* 
+            Passo 1: Definir variiáveis em sass. 
+            As variaveis em sass são definidas da seguinte maneira
+                $nome-da-variavel: valor-da-variavel
+            
+            Neste passo definimos uma variavel de nome text-color e definimos seu
+            valor para red. Em seguida, mudamos o valor da propriedade color de
+            .blog-post e h2 para o valor que definomos para a variavel text-color.
+        */
+        $text-color: red;
+
+        .header{
+          text-align: center;
+        }
+        .blog-post, h2 {
+          /* color: $text-color; */
+        }
+
+        /* 
+            Passo 2: Podemos aninhar regras css com sass. Para o caso
+            de projetos muito grandes, temos a possibilidade de aninhar regras
+            css dentro de um mesmo bloco, deixando explicito o grau de parentesco
+            entre os elementos aninhados.
+
+            No caso de uma navbar, podemos fazer assim:
+
+            nav {
+                background-color: red;
+
+                ul {
+                    list-style: none;
+
+                    li {
+                    display: inline-block;
+                    }
+                }
+            }
+
+
+        */
+      </style>
+      
+      <h1 class="header">Learn Sass</h1>
+      <div class="blog-post">
+        <h2>Some random title</h2>
+        <p>This is a paragraph with some random text in it</p>
+      </div>
+      <div class="blog-post">
+        <h2>Header #2</h2>
+        <p>Here is some more random text.</p>
+      </div>
+      <div class="blog-post">
+        <h2>Here is another header</h2>
+        <p>Even more random text within a paragraph</p>
+      </div>
+</body>
+</html>
