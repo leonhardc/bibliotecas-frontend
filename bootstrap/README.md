@@ -1,64 +1,27 @@
 # Bootstrap
 
-## Usar design responsivo com contêineres fluidos do Bootstrap
+Bootstrap é um framework front-end que fornece estruturas de CSS e JavaScript para a criação de sites e aplicações responsivas. Além disso, pode lidar com sites de desktop e páginas de dispositivos móveis da mesma forma.
 
-Na seção do HTML5 e CSS do freeCodeCamp nós construímos uma aplicação de Fotos de Gatos. Agora vamos voltar para ela. Dessa vez, nós estilizaremos usando o framework de CSS responsivo popular conhecido como Bootstrap.
-
-
-O Bootstrap descobrirá a largura da tela e responderá redimensionando os elementos do HTML - daí o nome design responsivo.
+Originalmente, o Bootstrap foi desenvolvido para o Twitter por um grupo de desenvolvedores porém e se tornou uma das estruturas de front-end e projetos de código aberto mais populares do mundo.
 
 
-Com um design responsivo, não há necessidade de projetar uma versão móvel do seu site. Ele terá uma boa aparência em dispositivos com telas de qualquer largura.
+## Como usar o Bootstrap no seu projeto?
 
+Na página inicial desse framework é possível encontrar mais detalhes de como adicionar o bootstrap no seu projeto e como dar os primeiros passos. 
 
-Você pode incluir o Bootstrap em qualquer aplicativo, adicionando o seguinte código ao topo do HTML:
+### Via CDN
 
-
-```HTML
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
-
-
-```
-
-Neste caso, já o adicionamos para você a esta página por trás dos panos. Note que usar a tag > ou /> para fechar a tag link é aceitável.
-
-
-## Tornar imagens responsivas a dispositivos móveis
-
-
-Primeiro, adicione uma nova imagem abaixo da existente. Defina o seu atributo src como https://cdn.freecodecamp.org/curriculum/cat-photo-app/running-cats.jpg.
-
-
-Seria ótimo se essa imagem pudesse ser exatamente do tamanho da nossa tela do celular.
-
-
-Felizmente, com o Bootstrap, tudo que precisamos fazer é adicionar a classe img-responsive para a nossa imagem. Faça isso, e a imagem deve encaixar perfeitamente na largura da página.
-
-
-## Centralizar o texto com Bootstrap
-
-
-Agora que estamos usando Bootstrap, podemos centralizar nossos elementos de cabeçalho para deixá-los com melhor aparência. Tudo que precisamos fazer é adicionar a classe text-center ao nosso elemento h2.
-
-
-Lembre-se de que você pode adicionar várias classes ao mesmo elemento separando cada uma delas com um espaço, assim:
-
+Se voce quiser adicionar o bootstrap e já sair usando basta adicionar a tag de estilos abaixo no seu documento HTML. Lembrando que a tag abaixo só adiciona a folha de estilos css do bootstrap. Para adicionar JavaScript e outros elementos, leia a documentação.
 
 ```html
-
-    <h2 class="red-text text-center">your text</h2>
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 ```
 
-## Criar um botão do Bootstrap
 
+## Referências
 
-O Bootstrap possui seus próprios estilos para elementos button, os quais ficam muito melhores do que aqueles botões em HTML puro.
-
-
-Crie um novo elemento button abaixo da foto grande do gatinho. Dê a ele as classes btn e btn-default, assim como o texto Like.
-
-
+* [Bootstrap: O que é, Documentação, como e quando usar](https://www.alura.com.br/artigos/bootstrap#bootstrap:-o-que-e?)
+* [Bootstrap Documentation](https://getbootstrap.com/)
+* [Front End Development Libraries](https://www.freecodecamp.org/learn/front-end-development-libraries/)
 
 
