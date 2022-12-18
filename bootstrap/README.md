@@ -7,7 +7,7 @@ Originalmente, o Bootstrap foi desenvolvido para o Twitter por um grupo de desen
 
 ## Como usar o Bootstrap no seu projeto?
 
-Na página inicial desse framework é possível encontrar mais detalhes de como adicionar o bootstrap no seu projeto e como dar os primeiros passos. 
+Na página inicial da documentação do bootstrap é possível encontrar mais detalhes de como adicionar o bootstrap no seu projeto e como dar os primeiros passos. 
 
 ### Via CDN
 
