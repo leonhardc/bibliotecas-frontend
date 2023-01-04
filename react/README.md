@@ -138,3 +138,249 @@ onde:
 * `<TypesOfFood />` é a tag html perdonalizada que criamos para referenciarmos o nosso elemento TypesOfFood
 * `document.getElementById("challenge-node")` é o nó onde estamos querendo renderizar nosso componente
 
+#### **Passar props para um componente funcional sem estado**
+
+Os desafios anteriores cobriram muito sobre a criação e composição de elementos JSX, componentes funcionais e componentes de classe de estilo ES6 no React. Com esta base, é hora de olhar outro recurso muito comum em React: props. No React, você pode passar props, ou propriedades, para componentes filhos. Digamos que você tem um componente App que renderiza um componente filho chamado Welcome que é um componente funcional sem estado. Você pode passar a Welcome uma propriedade user escrevendo:
+
+```javascript
+    <App>
+        <Welcome user='Mark' />
+    </App>
+```
+
+Você usa atributos HTML personalizados criados por você e suportados por React para serem passados ao componente. Neste caso, a propriedade criada user é passada para o componente Welcome. Uma vez que Welcome é um componente funcional sem estado, ele tem acesso a esse valor assim:]
+
+```javascript
+    const Welcome = (props) => <h1>Hello, {props.user}!</h1>
+```
+
+É padrão chamar esse valor props e, quando lidar com componentes funcionais sem estado, você basicamente considera isso como um argumento para uma função que retorna JSX. Você pode acessar o valor do argumento no corpo da função. Com componentes de classe, você verá que isto é um pouco diferente.
+
+#### **Passar um array como props**
+
+O último desafio demonstrou como passar informações de um componente pai para um componente filho como propriedades props. Este desafio analisa como matrizes podem ser passadas como props. Para passar um array para um elemento JSX, ele deve ser tratado como JavaScript e encapsulado em chaves.
+
+```javascript
+    <ParentComponent>
+        <ChildComponent colors={["green", "blue", "red"]} />
+    </ParentComponent>
+```
+
+O componente filho então tem acesso às propriedades colors do array. Métodos de array como join() podem ser usados ao acessar a propriedade. `const ChildComponent = (props) => <p>{props.colors.join(', ')}</p>` Isto unirá todos os itens do array colors em uma string separada por vírgulas e produzirá: `<p>green, blue, red</p>` Depois, aprenderemos sobre outros métodos comuns de renderizar arrays de dados em React.
+
+#### **Usar props padrão**
+
+React também tem uma opção para definir as propriedades padrão. Você pode atribuir propriedades padrão a um componente como uma propriedade no próprio componente e o React atribui a propriedade padrão se necessário. Isso permite que você especifique qual deve ser um valor da propriedade se nenhum valor for explicitamente fornecido. Por exemplo, se você declarar `MyComponent.defaultProps = { location: 'San Francisco' }`, você definiu uma propriedade de localização definida para a string San Francisco, a menos que você especifique de outra forma. React atribui propriedades padrão se "props" forem indefinidas, mas se você passar `null` como o valor para uma prop, continuará `null`.
+
+#### Sobrescrever props padrão
+
+A habilidade de definir props padrão é um recurso útil em React. A maneira de substituir as props padrão é definindo explicitamente os valores das propriedades para um componente.
+
+```javascript
+    const Items = (props) => {
+        return 
+            <h1>
+                Current Quantity of Items in Cart: {props.quantity}
+            </h1>
+    }
+
+    Items.defaultProps = {
+        quantity: 0
+    }
+
+    class ShoppingCart extends React.Component {
+        constructor(props) {
+            super(props);
+        }
+        render() {
+            return <Items quantity={10}/> {/* Aqui estamos sobrescrevendo props padrão */}
+        }
+    };
+```
+
+#### **Usar propTypes para definir os props que você espera**
+
+React fornece recursos úteis de checagem de tipos para verificar se os componentes recebem propriedades do tipo correto. Por exemplo, o seu aplicativo faz uma chamada de API para recuperar dados que você espera estar em um array, que é então passado para um componente como uma prop. Você pode definir propTypes no seu componente para exigir que os dados sejam do tipo array. Isso lançará um aviso útil quando os dados forem de qualquer outro tipo.
+
+É considerada uma boa prática definir propTypes quando você sabe o tipo de uma "prop" antes do tempo. Você pode definir uma propriedade propTypes para um componente da mesma forma que você definiu defaultProps. Fazer isso verificará se as "props" de uma determinada chave estão presentes com um determinado tipo. Aqui está um exemplo para exigir o tipo function para uma propriedade chamada handleClick:
+
+```javascript
+    MyComponent.propTypes = { handleClick: PropTypes.func.isRequired }
+```
+
+No exemplo acima, a parte PropTypes.func verifica se handleClick é uma função. Adicionar isRequired diz ao React que handleClick é uma propriedade necessária para esse componente. Você verá um aviso se essa propriedade não for fornecida. Também observe que func representa function. Entre os sete tipos primitivos de JavaScript, function e boolean (escrito como bool) são os únicos dois que usam ortografia incomum. Além dos tipos primitivos, existem outros tipos disponíveis. Por exemplo, você pode verificar que uma prop é um elemento React. Consulte a documentação para ver todas as opções.
+
+```javascript
+    const Items = (props) => {
+        return 
+                <h1>
+                    Current Quantity of Items in Cart: {props.quantity}
+                </h1>
+    };
+
+    {/* Definindo propTypes do componentes Funcional Items */}
+    Items.propTypes = {
+        quantity: PropTypes.number.isRequired
+    }
+
+    Items.defaultProps = {
+        quantity: 0
+    };
+
+    class ShoppingCart extends React.Component {
+        constructor(props) {
+            super(props);
+        }
+        render() {
+            return <Items />
+        }
+    };
+
+```
+
+#### **Acessar props usando this.props**
+
+Os últimos desafios cobriram as formas básicas de passar propriedades para componentes filhos. Mas e se o componente filho para o qual você está passando uma propriedade é um componente de classe ES6, em vez de um componente funcional sem estado? O componente da classe ES6 usa uma convenção ligeiramente diferente para acessar as propriedades.
+
+Sempre que você se refere a um componente de classe dentro dele mesmo, você usa a palavra-chave this. Para acessar props dentro de um componente de classe, você adiciona this ao início do código que você usar para acessá-lo. Por exemplo, se um componente de classe ES6 possui uma prop chamada data, você escreve {this.props.data} em JSX.
+
+```javascript
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+  }
+  render() {
+    return (
+        <div>
+            { /* manda props com o valor 'Leonardo' dentro da Tag Walcome */ }
+            <Welcome name={'Leonardo'}/>
+        </div>
+    );
+  }
+};
+
+class Welcome extends React.Component {
+  constructor(props) {
+    super(props);
+
+  }
+  render() {
+    return (
+        <div>
+          { /* Acessa o valor da props usando this, dentro da tag Welcome */ }
+          <p>Hello, <strong>{this.props.name}</strong>!</p>
+        </div>
+    );
+  }
+};
+```
+
+#### **Criar um elemento stateful**
+
+Um dos tópicos mais importantes em React é **state**. State consiste em qualquer dado que sua aplicação precisar saber, que pode ser alterado durante o tempo. Você quer que seus aplicativos respondam a mudanças de estado e apresentem uma interface atualizada quando necessário. React oferece uma boa solução para o gerenciamento de estados de aplicações web modernas.
+
+Você pode criar um estado em um componente React ao declarar a propriedade **state** na classe do componente no seu **constructor**. Isso inicializa o componente com **state** quando é criado. A propriedade **state** deve ser definida para um object JavaScript. Declarando, ele se parece com isso:
+
+```javascript
+    this.state = {
+
+    }
+```
+
+Você precisa acessar o objeto state ao longo da vida do seu componente. Você pode atualizá-lo, renderizá-lo na sua interface do usuário e o passar como props para componentes filhos. O objeto state pode ser tão complexo ou simples quanto você precise. Note que você precisa criar uma classe de componente ao estender React.Component para criar state dessa forma.
+
+#### **Renderizar estado na interface de usuário**
+
+Uma vez que você define o estado inicial de um componente, você pode exibir qualquer parte dele na interface do usuário que é renderizada. Se um componente é stateful, ele sempre terá acesso aos dados no state em seu método render(). Você pode acessar os dados com this.state.
+
+Se você deseja acessar um valor de estado dentro do return do método de renderização, você precisa envolver o valor entre chaves.
+
+state é uma das características mais poderosas dos componentes do React. Ele permite que você rastreie dados importantes no seu aplicativo e renderize uma interface do usuário em resposta a alterações nestes dados. Se os seus dados mudarem, sua interface de usuário será alterada. React usa o que é chamado de um DOM virtual, para acompanhar as mudanças nos bastidores. Quando os dados de state atualiza, ele aciona uma re-renderização dos componentes usando esses dados - incluindo componentes filhos que receberam os dados como uma prop. React atualiza o DOM, mas apenas onde necessário. Isso significa que você não precisa se preocupar em mudar o DOM. Você simplesmente declara como deve ser a interface do usuário.
+
+Note que se você faz um componente stateful, nenhum outro componente está ciente do seu state. O state é completamente encapsulado, ou local para esse componente, a não ser que você passe dados de estado para um componente filho como props. Esta noção de state encapsulado é muito importante porque permite que você escreva uma certa lógica, depois, tenha essa lógica contida e isolada num só lugar no seu código.
+
+```javascript
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: 'freeCodeCamp'
+    }
+  }
+  render() {
+    return (
+      <div>
+        { /* Renderizando state */ }
+        <h1>{this.state.name}</h1>
+      </div>
+    );
+  }
+};
+```
+
+#### Renderizar estado na interface de usuário de outra forma
+
+Há outra forma de acessar o state em um componente. No método render(), antes da instrução return, você pode escrever JavaScript diretamente. Por exemplo, você poderia declarar funções, acessar dados de state ou props, executar computações nesses dados, entre outras coisas. Em seguida, você pode atribuir quaisquer dados para variáveis, que você tem acesso na instrução return.
+
+```javascript
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: 'freeCodeCamp'
+    }
+  }
+  render() {
+    // capturando o valor de name em state
+    const name = this.state.name
+    return (
+      <div>
+        { /* Usando a variável name e não this.state.name */ }
+        <h1>{name}</h1>
+      </div>
+    );
+  }
+};
+```
+
+#### **Definir estado com this.setState**
+
+Os desafios anteriores abordaram o state dos componentes e como inicializar state no constructor. Há também uma maneira de alterar o state do componente. React fornece um método para atualizar o componente state chamado setState. Você chama o método setState dentro da sua classe de componente assim: this.setState(), passando como parâmetro um objeto com pares de valor chave. As chaves são suas propriedades do estado e os valores são dados do estado atualizados. Por exemplo, se armazenássemos um username em state e quiséssemos atualizá-lo, ficaria assim:
+
+```javascript
+    this.setState({
+        username: 'Lewis'
+    });
+```
+
+React espera que você nunca modifique o state diretamente, em vez disso sempre use this.setState() quando as mudanças de estado ocorrerem. Além disso, você deve notar que React pode agrupar várias atualizações de estado para melhorar o desempenho. Isso significa que atualizações de estado através do método setState podem ser assíncronas. Existe uma sintaxe alternativa para o método setState que fornece uma forma de contornar esse problema. Isso raramente é necessário, mas é bom ter isso em mente! Consulte nosso artigo sobre React para saber mais detalhes.
+
+```javascript
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: 'Initial State'
+    };
+    this.handleClick = this.handleClick.bind(this);
+  }
+  handleClick() {
+    // Alterando o state com this.setState
+    this.setState(
+      {
+        name: "React Rocks!"
+      }
+    )
+  }
+  render() {
+    return (
+      <div>
+        <button onClick={this.handleClick}>Click Me</button>
+        <h1>{this.state.name}</h1>
+      </div>
+    );
+  }
+};
+```
+
