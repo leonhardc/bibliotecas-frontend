@@ -384,3 +384,130 @@ class MyComponent extends React.Component {
 };
 ```
 
+#### **Vincular 'this' para o método de classe**
+
+Além de definir e atualizar state, você também pode definir métodos para o seu componente de classe. Um método de classe tipicamente precisa usar a palavra-chave this para que possa acessar as propriedades na classe (assim como state e props) dentro do escopo do método. Existem algumas maneiras para permitir que os métodos da sua classe acessem this.
+
+Uma forma comum é explicitamente vincular this no construtor para que this torne-se vinculado aos métodos da classe quando o componente é inicializado. Você pode ter percebido que o último desafio usou **this.handleClick = this.handleClick.bind(this)** para o método handleClick no construtor. Em seguida, quando você chama uma função como **this.setState()** dentro do método da classe, this refere-se a classe e não será undefined.
+
+Observação: a palavra-chave this é um dos aspectos mais confusos do JavaScript mas ele exerce uma papel importante em React. Embora o seu comportamento aqui é completamente normal, essas aulas não são o lugar para uma análise profunda de this portanto, por favor consulte outras aulas se o conteúdo acima for confuso!
+
+O editor de código possui um componente com um state que mantém o controle do texto. Também possui um método o qual o permite definir o texto para You clicked!. No entanto, o método não funciona porque está usando a palavra-chave this que é undefined. Corrija isso ao vincular explicitamente this ao método handleClick() no construtor do componente.
+
+Em seguida, adicione um manipulador de clique ao elemento button no método de renderização. Ele deve acionar o método handleClick() quando o botão recebe um evento de clique. Lembre-se de que o método que você passou ao manipulador onClick precisa de chaves porque ele deve ser interpretado diretamente como JavaScript.
+
+Assim que você completar os passos acima você deve ser capaz de clicar o botão e ver You clicked!.
+
+```javascript
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      text: "Hello"
+    };
+    // Altere o código abaixo desta linha
+    this.handleClick = this.handleClick.bind(this);
+    // Altere o código acima desta linha
+  }
+  handleClick() {
+    this.setState({
+      text: "You clicked!"
+    });
+  }
+  render() {
+    return (
+      <div>
+        { /* Altere o código abaixo desta linha */ }
+        <button onClick = {this.handleClick}>Click Me</button>
+        { /* Altere o código acima desta linha */ }
+        <h1>{this.state.text}</h1>
+      </div>
+    );
+  }
+};
+```
+
+#### **Usar o state para alternar um elemento**
+
+Às vezes você pode precisar saber o estado anterior ao atualizar o estado. No entanto, atualizações de estado podem ser assíncronas - isso significa que React pode fazer várias chamadas setState() em uma única atualização. Isto significa que você não pode confiar no valor anterior de this.state ou this.props ao calcular o próximo valor. Então, você não deve usar códigos como este:
+
+```javascript
+this.setState({
+  counter: this.state.counter + this.props.increment
+});
+```
+
+Ao invés disso, você deve passar a setState uma função que permita acessar state e props. Usando uma função com setState garante que você está trabalhando com os valores mais atuais de state e props. Isto significa que o acima deve ser reescrito como:
+
+```javascript
+this.setState((state, props) => ({
+  counter: state.counter + props.increment
+}));
+```
+
+Você também pode usar um formulário sem props se você precisar apenas do state:
+
+```javascript
+this.setState(state => ({
+  counter: state.counter + 1
+}));
+```
+
+Observe que você tem que envolver o objeto literalmente entre parênteses, caso contrário, JavaScript pensa que é um bloco de código.
+
+MyComponent tem uma propriedade visibility que foi inicializada como false. O método de renderização retorna uma view se o valor de visibility for verdadeiro e uma view diferente se for falsa.
+
+Atualmente, não há forma de atualizar a propriedade visibility no state do componente. O valor deve alternar entre verdadeiro e falso. Há um manipulador de cliques no botão que aciona um método de classe chamado toggleVisibility(). Passe uma função para setState para definir esse método para que o state de visibility alterne para o valor oposto quando o método for chamado. Se visibility for false, o método define para true, e vice-versa.
+
+Finalmente, clique no botão para ver a renderização condicional do componente com base no seu state.
+
+Dica: não se esqueça de vincular a palavra-chave this ao método no constructor!
+
+```javascript
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      visibility: false
+    };
+    // Altere o código abaixo desta linha
+    this.toggleVisibility() = this.toggleVisibility().bind(this);
+    // Altere o código acima desta linha
+  }
+  // Altere o código abaixo desta linha
+  toggleVisibility() {
+    this.setState(
+      state => {
+        if(state.visibility === true){
+          return {visibility: false};
+        }
+        else {
+          return {visibility: true};
+        }
+      }
+    )
+  }
+  // Altere o código acima desta linha
+  render() {
+    if (this.state.visibility) {
+      return (
+        <div>
+          <button onClick={this.toggleVisibility}>Click Me</button>
+          <h1>Now you see me!</h1>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <button onClick={this.toggleVisibility}>Click Me</button>
+        </div>
+      );
+    }
+  }
+}
+```
+
+
+
+
+
